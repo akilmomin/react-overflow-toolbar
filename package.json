@@ -1,0 +1,15 @@
+{
+  "name": "resizable-toolbar-monorepo",
+  "private": true,
+  "packageManager": "pnpm@10.34.2",
+  "scripts": {
+    "build": "pnpm --filter react-overflow-toolbar build",
+    "typecheck": "pnpm -r exec tsc --noEmit",
+    "dev:example": "pnpm --filter example dev"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
