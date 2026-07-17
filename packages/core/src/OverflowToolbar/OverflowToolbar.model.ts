@@ -38,3 +38,31 @@ export interface IRenderOverflowMenuMeta {
 export interface IRenderOverflowItemMeta {
   close: () => void;
 }
+
+export interface IOverflowToolbarProps {
+  items: IToolbarItem[];
+  gap?: number;
+  overflowTriggerWidth?: number;
+  className?: string;
+  itemsContainerClassName?: string;
+  renderItem: (item: IToolbarItem, meta: IRenderItemMeta) => ReactNode;
+  renderOverflowTrigger?: (meta: IRenderOverflowTriggerMeta) => ReactNode;
+  renderOverflowMenu?: (meta: IRenderOverflowMenuMeta) => ReactNode;
+  renderOverflowItem?: (item: IToolbarItem, meta: IRenderOverflowItemMeta) => ReactNode;
+  onOverflowChange?: (overflowItems: IToolbarItem[]) => void;
+}
+
+export interface IUseOverflowToolbarOptions {
+  items: IToolbarItem[];
+  gap?: number;
+  overflowTriggerWidth?: number;
+}
+
+export interface IUseOverflowToolbarResult {
+  containerRef: RefObject<HTMLDivElement>;
+  measureRef: (id: string) => (node: HTMLElement | null) => void;
+  overflowTriggerRef: RefObject<HTMLElement>;
+  visibleItems: IToolbarItem[];
+  overflowItems: IToolbarItem[];
+  isMeasuring: boolean;
+}

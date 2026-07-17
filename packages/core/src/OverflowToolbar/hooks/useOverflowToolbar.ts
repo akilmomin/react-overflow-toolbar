@@ -1,23 +1,7 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { RefObject } from "react";
-import type { IToolbarItem } from "./types";
+import type { IUseOverflowToolbarOptions, IUseOverflowToolbarResult } from "../OverflowToolbar.model";
 import { computeVisibility } from "./internal/computeVisibility";
 import { useResizeObserver } from "./internal/useResizeObserver";
-
-export interface IUseOverflowToolbarOptions {
-  items: IToolbarItem[];
-  gap?: number;
-  overflowTriggerWidth?: number;
-}
-
-export interface IUseOverflowToolbarResult {
-  containerRef: RefObject<HTMLDivElement>;
-  measureRef: (id: string) => (node: HTMLElement | null) => void;
-  overflowTriggerRef: RefObject<HTMLElement>;
-  visibleItems: IToolbarItem[];
-  overflowItems: IToolbarItem[];
-  isMeasuring: boolean;
-}
 
 const DEFAULT_TRIGGER_WIDTH = 40;
 

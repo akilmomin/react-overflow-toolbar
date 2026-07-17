@@ -1,26 +1,13 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import type { ReactNode, RefObject } from "react";
-import { useOverflowToolbar } from "./useOverflowToolbar";
+import { useOverflowToolbar } from "./hooks/useOverflowToolbar";
 import type {
-  IRenderItemMeta,
+  IOverflowToolbarProps,
   IRenderOverflowItemMeta,
   IRenderOverflowMenuMeta,
   IRenderOverflowTriggerMeta,
   IToolbarItem,
-} from "./types";
-
-export interface IOverflowToolbarProps {
-  items: IToolbarItem[];
-  gap?: number;
-  overflowTriggerWidth?: number;
-  className?: string;
-  itemsContainerClassName?: string;
-  renderItem: (item: IToolbarItem, meta: IRenderItemMeta) => ReactNode;
-  renderOverflowTrigger?: (meta: IRenderOverflowTriggerMeta) => ReactNode;
-  renderOverflowMenu?: (meta: IRenderOverflowMenuMeta) => ReactNode;
-  renderOverflowItem?: (item: IToolbarItem, meta: IRenderOverflowItemMeta) => ReactNode;
-  onOverflowChange?: (overflowItems: IToolbarItem[]) => void;
-}
+} from "./OverflowToolbar.model";
 
 const noopMeasureRef = () => {};
 

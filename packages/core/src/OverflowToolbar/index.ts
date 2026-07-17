@@ -1,4 +1,6 @@
-export { OverflowToolbar, useOverflowToolbar } from "./OverflowToolbar";
+export { OverflowToolbar } from "./OverflowToolbar";
+export { useOverflowToolbar } from "./hooks";
+
 export type {
   IOverflowToolbarProps,
   IUseOverflowToolbarOptions,
@@ -9,4 +11,4 @@ export type {
   IRenderOverflowTriggerMeta,
   IRenderOverflowMenuMeta,
   IRenderOverflowItemMeta,
-} from "./OverflowToolbar";
+} from "./OverflowToolbar.model";
