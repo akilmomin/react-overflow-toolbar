@@ -48,6 +48,7 @@ export const useOverflowToolbar = ({
       id: item.id,
       width: widthsRef.current.get(item.id) ?? 0,
       priority: item.priority ?? index,
+      sticky: item.sticky ?? false,
     }));
 
     const result = computeVisibility(

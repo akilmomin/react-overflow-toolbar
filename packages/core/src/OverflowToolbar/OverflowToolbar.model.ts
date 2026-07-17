@@ -12,7 +12,8 @@ export interface IToolbarItem {
   priority?: number;
   disabled?: boolean;
   variant?: ToolbarItemVariant;
-  icon?: unknown;
+  /** Never moves into the overflow menu, regardless of available width. */
+  sticky?: boolean;
   onClick?: (item: IToolbarItem) => void;
   /**
    * Renders this item as any component (TextField, Switch, custom widget, ...)

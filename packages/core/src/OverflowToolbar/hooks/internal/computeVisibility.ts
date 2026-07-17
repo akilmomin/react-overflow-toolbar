@@ -2,6 +2,7 @@ export interface IVisibilityItem {
   id: string;
   width: number;
   priority: number;
+  sticky: boolean;
 }
 
 export interface IVisibilityResult {
@@ -34,6 +35,7 @@ export const computeVisibility = (
 
   const overflowCandidates = orderedItems
     .map((item, index) => ({ ...item, index }))
+    .filter((item) => !item.sticky)
     .sort((a, b) => {
       if (a.priority !== b.priority) return a.priority - b.priority;
       return b.index - a.index;

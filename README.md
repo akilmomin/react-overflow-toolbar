@@ -7,7 +7,7 @@ A headless React hook + component for toolbars that automatically collapse overf
 This is a pnpm monorepo:
 
 - [`packages/core`](packages/core) — the `react-overflow-toolbar` library (the published package)
-- [`packages/example`](packages/example) — a Vite app demonstrating the toolbar with plain HTML, Tailwind, and MUI styling
+- [`packages/example`](packages/example) — a Vite app demonstrating the toolbar with four render-prop skins (Material UI, Tailwind, plain HTML, and the library's own unstyled defaults). Each skin also renders an "Auto-save" switch as a toolbar item to show `content` rendering something other than a button.
 
 ## Installation
 
@@ -74,6 +74,7 @@ const { containerRef, measureRef, visibleItems, overflowItems, isMeasuring } = u
 | `priority` | `number` | Higher priority items stay visible longer (defaults to array index) |
 | `disabled` | `boolean` | Disables the item |
 | `variant` | `"default" \| "primary" \| "danger"` | Visual variant, left to `renderItem` to interpret |
+| `sticky` | `boolean` | Never moves into the overflow menu, regardless of available width |
 | `onClick` | `(item) => void` | Click handler |
 | `content` | `(meta) => ReactNode` | Renders a fully custom item (e.g. a `TextField`) instead of `renderItem` |
 

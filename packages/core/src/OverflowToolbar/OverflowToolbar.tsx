@@ -1,6 +1,7 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import type { ReactNode, RefObject } from "react";
 import { useOverflowToolbar } from "./hooks/useOverflowToolbar";
+import { useOverflowMenu } from "./hooks/useOverflowMenu";
 import type {
   IOverflowToolbarProps,
   IRenderOverflowItemMeta,
@@ -62,43 +63,14 @@ export const OverflowToolbar = ({
   renderOverflowItem = DefaultOverflowItem,
   onOverflowChange,
 }: IOverflowToolbarProps) => {
-  const isDefaultMenu = renderOverflowMenu === undefined;
   const resolvedRenderOverflowMenu = renderOverflowMenu ?? makeDefaultOverflowMenu(renderOverflowItem);
   const { containerRef, measureRef, overflowTriggerRef, visibleItems, overflowItems, isMeasuring } =
     useOverflowToolbar({ items, gap, overflowTriggerWidth });
-
-  const [menuOpen, setMenuOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  const handleToggleMenu = () => setMenuOpen((open) => !open);
-  const handleCloseMenu = () => setMenuOpen(false);
-
-  useEffect(() => {
-    onOverflowChange?.(overflowItems);
-  }, [overflowItems, onOverflowChange]);
-
-  useEffect(() => {
-    // Custom renderOverflowMenu implementations (e.g. MUI Menu, which portals
-    // outside rootRef) own their own outside-click/Escape handling via `close`.
-    if (!isDefaultMenu) return;
-    if (!menuOpen) return;
-
-    const handleDocumentMouseDown = (event: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-    const handleDocumentKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-
-    document.addEventListener("mousedown", handleDocumentMouseDown);
-    document.addEventListener("keydown", handleDocumentKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", handleDocumentMouseDown);
-      document.removeEventListener("keydown", handleDocumentKeyDown);
-    };
-  }, [menuOpen, isDefaultMenu]);
+  const { rootRef, menuOpen, handleToggleMenu, handleCloseMenu } = useOverflowMenu({
+    renderOverflowMenu,
+    overflowItems,
+    onOverflowChange,
+  });
 
   return (
     <div
